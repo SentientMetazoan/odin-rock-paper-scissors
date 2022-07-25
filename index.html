@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="./main.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./fontawesome-free-6.1.1-web/css/all.css">
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      init_page();
+    });
+  </script>
+  <script type="text/javascript" src="./main.js"></script>
+  <title>Document</title>
 </head>
 <body>
+  <div class="header flex">
+    <h1 class="title flex">Rock Paper Scissors</h1>
+    <div class="nav flex">
+      <div id="btn-start" class="navbtn">Start</div>
+      <div id="btn-about" class="navbtn">About</div>
+    </div>
+  </div>
+  <div class="main flex">
+    <div class="main-top flex">
+      <div class="main-top-text">Start a match!</div>
+      <div class="main-top-info flex" id="main-top-info">
+        <div class="score-left"><span class="fa fa-hand-fist"></span></div>
+        <div class="score-mid">v</div>
+        <div class="score-right"><span class="fa fa-hand-fist"></span></div>
+      </div>
+    </div>
+    <div class="main-mid flex">
+      <div class="main-mid-text">Choose your weapon:</div>
+      <div class="main-mid-choices flex">
+        <button class="btn-choice" id="btn-rock" value="rock"><span class="fa fa-hand-fist"></span></button>
+        <button class="btn-choice" id="btn-paper" value="paper"><span class="fa fa-hand"></span></button>
+        <button class="btn-choice" id="btn-scissors" value="scissors"><span class="fa fa-hand-scissors"></span></button>
+      </div>
+    </div>
+    <div class="main-bottom flex">
+      <table class="tbl-results">
+        <thead>
+          <tr>
+            <th style="width:10px;">Rnd</th>
+            <th colspan="2">Results</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer flex">
     
+  </div>
 </body>
 </html>
