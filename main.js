@@ -12,13 +12,20 @@ let game_over = false;
 let player_score = 0;
 let computer_score = 0;
 
+let sb; //scoreboard element
+
 
 
 function init_page(){
-  document.querySelectorAll(".btn-choice")
-  .forEach(el => el.addEventListener('click', () => playRound(el.getAttribute('value'),getComputerChoice())))
+  sb = document.querySelector(".scoreboard")
 
-  document.querySelector("#btn-start").addEventListener('click', () => init_game())
+  document.querySelectorAll(".btn-choice")
+  .forEach(el => el.addEventListener('click', () =>
+  (game_over)?
+  alert(`Game is over! Please start a new one!`)
+  : playRound(el.getAttribute('value'),getComputerChoice())))
+  
+  document.querySelector("#btn-start").addEventListener('click', () => init_game() )
 }
 
 function init_game(){
@@ -28,7 +35,8 @@ function init_game(){
   computer_score = 0;
   
   document.querySelector(".tbl-results tbody").innerHTML = ""
-  document.querySelectorAll(".score-left, .score-right").forEach(el => el.innerHTML = "<span>?</span>")
+  document.querySelectorAll(".score").forEach(el => el.innerHTML = "<span>?</span>")
+  sb.innerHTML = `<span>New game!</span>`
 }
 
 /**
@@ -68,20 +76,29 @@ function updateScoreboard(r){
   let pwin = r.result==="pwin"? "win" : r.result==="cwin"? "loss" : "tie";
   let cs = r.computer === "rock"? ROCK_ICON : r.computer === "paper"? PAPER_ICON : SCISSORS_ICON;
   let cwin = r.result==="cwin"? "win" : r.result==="pwin"? "loss" : "tie";
-
-  res_tr.innerHTML = `<th>${currentRound}</th><th><button class="result ${pwin}"><span class="${ps}"></span></button></th><th><button class="result ${cwin}"><span class="${cs}"></span></button></th>`
-
+  
+  res_tr.innerHTML = `<td>${currentRound}</td><td><button class="result ${pwin}"><span class="${ps}"></span></button></td><td><button class="result ${cwin}"><span class="${cs}"></span></button></td>`
+  
   document.querySelector("tbody").prepend(res_tr)
   currentRound++;
-
-  let ps_icon = document.querySelector(".score-left span")
+  
+  let ps_icon = document.querySelector("#player-choice span")
   ps_icon.className = ps;
   ps_icon.textContent = "";
-  let cs_icon = document.querySelector(".score-right span")
+  let cs_icon = document.querySelector("#computer-choice span")
   cs_icon.className = cs;
   cs_icon.textContent = ""
 
+  if(pwin === "win") player_score++;
+  else if(cwin === "win") computer_score++;
   game_over = (player_score >= 5 || computer_score >= 5)
+  
+  let str = "";
+  if(game_over) {
+    str += `<span style="color:${player_score > computer_score ? `green;">Player` : `red;">Computer`} wins the match!</span>`
+  }
+  sb.innerHTML = `<span>Player ${player_score}-${computer_score} Computer</span>${str}`
+  
   
 }
 

@@ -67,8 +67,10 @@ body {
   min-width: fit-content;
 }
 
-.main-top-text {
+.scoreboard {
   font-size: 32px;
+  text-align: center;
+  flex-flow: column nowrap;
 }
 
 .main-top-info {
@@ -78,7 +80,7 @@ body {
   width: 100%;
 }
 
-.score-left span, .score-right span {
+.score span {
   font-size: 192px;
   min-height: 192px;
   min-width: 192px;
@@ -93,7 +95,7 @@ body {
   gap: 24px;
 }
 
-.main-mid-choices {
+.main-mid > div {
   gap: 32px;
 }
 
@@ -105,15 +107,15 @@ body {
   min-height: 64px;
 }
 
-.main-mid-choices button span {
+.main-mid button span {
   color: black;
 }
 
-.main-mid-choices button:hover span {
+.main-mid button:hover span {
   color: darkslategray;
 }
 
-.main-mid-choices button:active span {
+.main-mid button:active span {
   color: #003200;
 }
 
